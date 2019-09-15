@@ -1,0 +1,47 @@
+zuul:
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+  # 添加代理头
+  add-proxy-headers: true
+  # 敏感头信息（重要）
+  sensitive-headers:
+  routes:
+    routes:
+      uaa:
+        sensitiveHeaders:
+####超时配置####
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 1
+  MaxAutoRetriesNextServer: 2
+  eureka:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+###超时配置###
+
+# 权限验证
+security:
+  oauth2:
+    resource:
+      user-info-uri:  http://uaa/user
+      prefer-token-info: false
+      loadBalanced: true
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
