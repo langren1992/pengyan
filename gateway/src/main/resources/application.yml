@@ -1,3 +1,7 @@
+spring:
+  mvc:
+    servlet:
+      load-on-startup: 1
 zuul:
   host:
     connect-timeout-millis: 10000
@@ -7,11 +11,13 @@ zuul:
   # 敏感头信息（重要）
   sensitive-headers:
   routes:
-    routes:
-      uaa:
-        sensitiveHeaders:
+    uaa: /uaa/**
+    server1: /server1/**
 ####超时配置####
 ribbon:
+  eager-load:
+    enabled: true
+    clients: uaa, server1
   ReadTimeout: 10000
   ConnectTimeout: 10000
   MaxAutoRetries: 1

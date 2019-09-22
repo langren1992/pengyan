@@ -19,7 +19,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.
                 csrf().disable()
-                .authorizeRequests().anyRequest().authenticated()
+                .authorizeRequests()
+                .antMatchers("/access/check").permitAll()
+                .antMatchers("/**").authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .httpBasic();
     }

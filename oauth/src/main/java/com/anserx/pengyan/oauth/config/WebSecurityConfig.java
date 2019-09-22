@@ -34,16 +34,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .anyRequest().fullyAuthenticated()
-                .antMatchers("/oauth/token").permitAll()
-                .and()
-                .csrf().disable();
-    }
-
     /**
      * 修改密解密方式
      * @param auth

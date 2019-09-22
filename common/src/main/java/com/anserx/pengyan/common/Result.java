@@ -1,8 +1,9 @@
 package com.anserx.pengyan.common;
 
 
+import java.io.Serializable;
 
-public class Result<T> {
+public class Result<T> implements Serializable {
 
 
     private Integer code;
