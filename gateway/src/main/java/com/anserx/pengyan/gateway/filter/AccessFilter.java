@@ -83,7 +83,7 @@ public class AccessFilter extends ZuulFilter {
             // 返回错误消息
             requestContext.setResponseBody(JSONObject.toJSONString(result));
         } else {
-            requestContext.addZuulRequestHeader(SecurityConstants.USER_HEADER, token);
+            requestContext.addZuulRequestHeader(SecurityConstants.USER_HEADER, JSONObject.toJSONString(result.getData()));
         }
         return null;
     }
